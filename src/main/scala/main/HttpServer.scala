@@ -5,6 +5,7 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import akka.stream.OverflowStrategy
+import com.typesafe.config.Config
 // import akka.http.scaladsl.model.headers
 // import akka.http.scaladsl.model.headers.GenericHttpCredentials
 // import akka.http.scaladsl.model.{StatusCodes, Uri}
@@ -17,9 +18,8 @@ import com.typesafe.config.ConfigFactory
 // import scala.concurrent.ExecutionContext.Implicits.global
 // import scala.concurrent.Future
 
-class HttpServer(chatSystem: ActorRef)(implicit actorSystem: ActorSystem) {
+class HttpServer(chatSystem: ActorRef, config: Config)(implicit actorSystem: ActorSystem) {
   import MarshallingHelpers._
-  val config = ConfigFactory.load
   implicit val m = ActorMaterializer()
 
   val route: Route =
